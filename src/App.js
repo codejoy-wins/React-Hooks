@@ -93,6 +93,21 @@ function App() {
     setTodos(newTodos);
   }
 
+  const nice = {
+    "background": "blue",
+    "color": "gold",
+    "fontSize": "2vw",
+    "display": "inline-block",
+  }
+
+  const Footer = ()=> {
+    return (
+      <div style={nice}>
+        <a href="https://maxjann.com">Jann Software</a>
+      </div>
+    )
+  }
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -101,6 +116,7 @@ function App() {
         ))}
         <TodoForm addTodo={addTodo} />
       </div>
+      < Footer />
     </div>
   )
 }
