@@ -11,18 +11,19 @@ function Todo({ todo, index }) {
 }
 
 function TodoForm({addTodo}) {
-  const [value, setValue] = useState('');
+  const [value, magic] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
     if(!value) return;
+    if(value.length<2) return;
     addTodo(value);
-    setValue('');
+    magic('');
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" className="input" value={value} onChange={e => setValue(e.target.value)}></input>
+      <input type="text" className="input" value={value} onChange={e => magic(e.target.value)}></input>
     </form>
   )
 }
