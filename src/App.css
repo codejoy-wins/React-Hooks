@@ -8,7 +8,7 @@
   background: #e8e8e8;
   border-radius:  4px;
   padding: 5px;
-  max-width: 400px;
+  /* max-width: 400px; */
 }
 
 .todo {
@@ -23,7 +23,39 @@
   justify-content: space-between;
 }
 
+/* I love everything with hover */
+
+.todo:hover {
+  background: #f9f;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
+  padding: 3px 10px;
+  font-size: 12px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 a{
   text-decoration: none;
-  color: gold;
+  color: greenyellow;
+}
+
+a:hover{
+  color:gold;
+}
+
+.strange{
+  color:greenyellow;
+
+}
+
+.strange:hover{
+  color:gold;
+}
+
+.input{
+  color:purple;
+  width:80vw;
 }

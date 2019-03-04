@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// to adjust responsiveness of text i can create a variable like .7 and then hmmm
+
 // fancy destructuring of props
-function Todo({ todo, index, completeTodo }) {
+function Todo({ todo, index, completeTodo, deleteTodo, highlightTodo }) {
   return (
-    <div style={{textDecoration: todo.isCompleted ? 'line-through' : ''}} className="todo">
+
+    <div style={{textDecoration: todo.isCompleted ? 'line-through' : '', color: todo.isHighlighted ? 'blue' : 'black'}} className="todo">
+
       {todo.text}
-      <div>
+      <div >
         <button onClick={()=> completeTodo(index)}>Complete</button>
+        <button onClick={()=> deleteTodo(index)}>x</button>
       </div>
     </div>
   )
@@ -26,7 +31,7 @@ function TodoForm({addTodo}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" className="input" value={value} onChange={e => magic(e.target.value)}></input>
+      <input type="text" className="input" placeholder="Add Todo..." value={value} onChange={e => magic(e.target.value)}></input>
     </form>
   )
 }
@@ -67,18 +72,22 @@ function App() {
     {
       text: 'Learn about React',
       isCompleted: false,
+      isHighlighted: false,
     },
     {
       text: 'Go to the beach',
       isCompleted: false,
+      isHighlighted: false,
     },
     {
       text: 'Learn Calculus',
       isCompleted: false,
+      isHighlighted: false,
     },
     {
       text: 'Study Machine Learning',
       isCompleted: false,
+      isHighlighted: false,
     },
   ]);
 
@@ -93,26 +102,52 @@ function App() {
     setTodos(newTodos);
   }
 
+  const deleteTodo = index => {
+    const newTodos = [...todos].filter((thing,spot)=>spot!=index);
+    setTodos(newTodos);
+  }
+
+  const highlightTodo = index => {
+    console.log(`highlighting ${index}`);
+    const newTodos = [...todos];
+    newTodos[index].isHighlighted = true;
+    setTodos(newTodos);
+  }
+
   const nice = {
     "background": "blue",
-    "color": "gold",
-    "fontSize": "2vw",
+    "color": "aliceblue",
+    "fontSize": "22px",
     "display": "inline-block",
+    "padding": "1vw",
+    "margin": ".5vw auto",
+    "width": "100%",
+    "textAlign": "center",
   }
 
   const Footer = ()=> {
     return (
       <div style={nice}>
-        <a href="https://maxjann.com">Jann Software</a>
+        &copy; <a href="https://maxjann.com">Jann Software</a> <span className="strange">2019</span>
+      </div>
+    )
+  }
+
+  const Header = ()=> {
+    return (
+      <div style={nice}>
+        <h1><span className="strange">R</span><span className="strange">e</span><span className="strange">a</span><span className="strange">c</span><span className="strange">t</span> <span className="strange">H</span><span className="strange">o</span><span className="strange">o</span><span className="strange">k</span><span className="strange">s</span></h1>
+        <p> <span className="strange">No</span> <span className="strange">classes</span> <span className="strange">were</span> <span className="strange">used</span> <span className="strange">in</span> <span className="strange">the</span> <span className="strange">making</span>  <span className="strange">of</span> <span className="strange">this</span> <span className="strange">website</span>.</p>
       </div>
     )
   }
 
   return (
     <div className="app">
+      < Header />
       <div className="todo-list">
         {todos.map((thing,spot)=> (
-          <Todo key={spot} index={spot} todo={thing} completeTodo={completeTodo}/>
+          <Todo key={spot} index={spot} todo={thing} completeTodo={completeTodo} deleteTodo={deleteTodo} highlightTodo={highlightTodo}/>
         ))}
         <TodoForm addTodo={addTodo} />
       </div>
