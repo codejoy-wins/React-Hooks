@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 
 // to adjust responsiveness of text i can create a variable like .7 and then hmmm
+// can you reorder the list?
+// can you click a div without overriding children onclicks?
+
 
 // fancy destructuring of props
 function Todo({ todo, index, completeTodo, deleteTodo, highlightTodo }) {
   return (
 
     <div style={{textDecoration: todo.isCompleted ? 'line-through' : '', color: todo.isHighlighted ? 'blue' : 'black'}} className="todo">
-
       {todo.text}
       <div >
         <button onClick={()=> completeTodo(index)}>Complete</button>
@@ -99,6 +101,8 @@ function App() {
   const completeTodo = index => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
+    newTodos[index].isHighlighted = true;
+
     setTodos(newTodos);
   }
 
@@ -115,7 +119,7 @@ function App() {
   }
 
   const nice = {
-    "background": "blue",
+    "background": "rebeccapurple",
     "color": "aliceblue",
     "fontSize": "22px",
     "display": "inline-block",

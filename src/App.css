@@ -39,23 +39,29 @@
 
 a{
   text-decoration: none;
-  color: greenyellow;
+  color: mediumpurple;
 }
 
 a:hover{
-  color:gold;
+  color: #209cee;
 }
 
 .strange{
-  color:greenyellow;
+  /* color:greenyellow; */
+  color:mediumpurple;
 
 }
+/* background: #209cee; */
+/* color: #5DADE2 */
 
 .strange:hover{
-  color:gold;
+  /* color:mediumpurple; */
+  /* color: #5DADE2; */
+  color: #209cee;
+
 }
 
 .input{
-  color:purple;
+  color: #209cee;
   width:80vw;
 }
